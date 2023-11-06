@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     ''' Test class from unittest, Test case '''
-    
+
     def test_init(self):
         '''initialization test class'''
         my_model = BaseModel()
@@ -18,7 +18,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(len(self.base_model.id), 36)
         self.assertIsInstance(self.base_model.created_at, datetime)
         self.assertIsInstance(self.base_model.updated_at, datetime)
-
 
     def test_str(self):
         '''Test magic str format'''
@@ -48,6 +47,7 @@ class TestBaseModel(unittest.TestCase):
                          [:-7], my_model.created_at.isoformat()[:-7])
         self.assertEqual(my_model_json["updated_at"]
                          [:-7], my_model.updated_at.isoformat()[:-7])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ import models
 
 class BaseModel:
     ''' class created '''
-    
+
     def __init__(self, *args, **kwargs):
         ''' Create Instances '''
         ''' handle kwargs '''
@@ -38,7 +38,7 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        ''' dictionary of the instance ''' 
+        ''' dictionary of the instance '''
         to_dict = self.__dict__.copy()
         to_dict["__class__"] = self.__class__.__name__
         to_dict["created_at"] = datetime.now().isoformat()
