@@ -5,8 +5,11 @@ import models
 
 
 class BaseModel:
-
+    ''' class created '''
+    
     def __init__(self, *args, **kwargs):
+        ''' Create Instances '''
+        ''' handle kwargs '''
         if kwargs is not None and len(kwargs) != 0:
             for key in kwargs:
                 time = datetime.now().isoformat()
@@ -26,13 +29,16 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
+        ''' formatting string '''
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
+        ''' update updated_at with datetime '''
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        ''' dictionary of the instance ''' 
         to_dict = self.__dict__.copy()
         to_dict["__class__"] = self.__class__.__name__
         to_dict["created_at"] = datetime.now().isoformat()
