@@ -1,22 +1,31 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
+"""models to import"""
 import json
+from models.base_model import BaseModel
+import os
 
 
 class FileStorage:
-    __file_path = "file.json"
-    __objects = {}
+	"""serializes/deserializes instances to a JSON file"""
+	__file_path = "str.json"
+	__objects = {}
 
-    def all(self):
-        return FileStorage.__objects
+	def all(self):
+		"""returns objects"""
+		return self.__objects
 
-    def new(self, obj):
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects[key] = obj
+	def new(self, obj):
+		"""adds new object"""
+		key = f"{obj.__class__.__name__}.{obj.id}"
+		self.__objects[key] = obj
 
-    def save(self):
-        '''not done yet'''
+	def save(self):
+		"""serializes __objects to the JSON file"""
+		_data = dict(self.__objects)
+		for key, obj in _data.items():
+			_data[key] = obj.to_dict()
+		with open(self.__file_path, "w") as file:
+			json.dump(_data, file)
 
-    def reload(self):
-        ''' not done yet '''
-
+	def reload(self):
+		"""deserializes the JSON file to __objects"""
