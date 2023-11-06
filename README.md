@@ -1,4 +1,4 @@
-<h1 align="center"> # AirBnB_clone</h1>
+# AirBnB_clone
 # Python package
 # Command interpreter in Python using the cmd module
 # Unit testing 
