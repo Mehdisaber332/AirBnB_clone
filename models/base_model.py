@@ -3,7 +3,9 @@ from uuid import uuid4 as id
 from datetime import datetime
 import models
 
+
 class BaseModel:
+
     def __init__(self, *args, **kwargs):
         if kwargs is not None and len(kwargs) != 0:
             for key in kwargs:
@@ -16,6 +18,7 @@ class BaseModel:
                         time)
                 else:
                     self.__dict__[key] = kwargs[key]
+
         else:
             self.id = str(id())
             self.created_at = datetime.now()
@@ -24,6 +27,15 @@ class BaseModel:
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
     def save(self):
         self.updated_at = datetime.now()
         models.storage.save()
+
+    def to_dict(self):
+        to_dict = self.__dict__.copy()
+        to_dict["__class__"] = self.__class__.__name__
+        to_dict["created_at"] = datetime.now().isoformat()
+        to_dict["updated_at"] = datetime.now().isoformat()
+
+        return (to_dict)
