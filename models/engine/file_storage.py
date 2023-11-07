@@ -10,6 +10,7 @@ class FileStorage:
     """serializes/deserializes instances to a JSON file"""
     __file_path = "str.json"
     __objects = {}
+    classes = {}
 
     def all(self):
         """returns objects"""
