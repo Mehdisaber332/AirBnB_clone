@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 import cmd
-import models
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class definition"""
+    """Class definition for the command interpreter"""
 
     prompt = "(hbnb) "
 
@@ -23,6 +24,17 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         ''' Do nothing on an empty input line '''
         pass
+
+    def do_create(self, arg):
+        '''Create a new instance of BaseModel'''
+        if not arg:
+            print("** class name missing **")
+        elif arg not in storage.classes:
+            print("** class doesn't exist **")
+        else:
+            new_instance = storage.classes[arg]()
+            new_instance.save()
+            print(new_instance.id)
 
 
 if __name__ == '__main__':
