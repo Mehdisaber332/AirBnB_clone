@@ -4,6 +4,7 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
 import os
 
 
@@ -43,5 +44,7 @@ class FileStorage:
                             _data[key] = BaseModel(**value)
                         elif "User" in key:
                             _data[key] = User(**value)
+                        elif "State" in key:
+                            _data[key] = State(**value)
             except FileExistsError:
                 pass
