@@ -1,38 +1,39 @@
 #!/usr/bin/env python3
+"""import models for test"""
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
-    ''' Test class from unittest, Test case '''
+    """Test class from unittest, Test case"""
 
     def test_init(self):
-        '''initialization test class'''
+        """initialization test class"""
         my_model = BaseModel()
         my_model.name = "My First Model"
         my_model.my_number = 89
-        '''test initialization '''
-        self.assertIsInstance(self.base_model, BaseModel)
-        self.assertIsInstance(self.base_model.id, str)
-        self.assertEqual(len(self.base_model.id), 36)
-        self.assertIsInstance(self.base_model.created_at, datetime)
-        self.assertIsInstance(self.base_model.updated_at, datetime)
+
+        self.assertIsInstance(my_model, BaseModel)
+        self.assertIsInstance(my_model.id, str)
+        self.assertEqual(len(my_model.id), 36)
+        self.assertIsInstance(my_model.created_at, datetime)
+        self.assertIsInstance(my_model.updated_at, datetime)
 
     def test_str(self):
-        '''Test magic str format'''
+        """Test magic str format"""
         my_model = BaseModel()
         magic_str = f"[BaseModel] ({my_model.id}) {my_model.__dict__}"
         self.assertEqual(str(my_model), magic_str)
 
     def test_save(self):
-        '''Test save method'''
+        """Test save method"""
         my_model = BaseModel()
         current_time = my_model.updated_at
         my_model.save()
 
     def test_to_dict(self):
-        '''Test dict method'''
+        """Test dict method"""
         my_model = BaseModel()
         my_model.name = "My First Model"
         my_model.my_number = 89
