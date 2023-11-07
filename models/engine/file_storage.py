@@ -38,6 +38,6 @@ class FileStorage:
                     json_dict = json.load(f)
                     for key, value in json_dict.items():
                         if "BaseModel" in key:
-                            _data[key] = BaseException(**value)
+                            _data[key] = BaseModel(**value)
             except FileExistsError:
                 pass
