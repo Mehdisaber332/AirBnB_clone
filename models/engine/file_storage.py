@@ -40,5 +40,7 @@ class FileStorage:
                     for key, value in json_dict.items():
                         if "BaseModel" in key:
                             _data[key] = BaseModel(**value)
+                        elif "User" in key:
+                            _data[key] = User(**value)
             except FileExistsError:
                 pass
