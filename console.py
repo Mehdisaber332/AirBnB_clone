@@ -119,6 +119,23 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, attr_name, attr_value)
                 obj.save()
 
+    def do_count(self, arg):
+        """Count the number of instances of a specified class.
+
+        Usage: count <class_name>
+        Example: count User
+        """
+        class_name = arg.strip()
+        if class_name in HBNBCommand.class_names:
+            count = 0
+            for instance in models.storage.all().values():
+                if instance.__class__.__name__ == class_name:
+                    count += 1
+            print(count)
+        else:
+            print("** Class doesn't exist **")
+
+    
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
