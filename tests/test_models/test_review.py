@@ -3,6 +3,8 @@
 import unittest
 from datetime import datetime
 from models.review import Review
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 
 
 class TestReview(unittest.TestCase):
