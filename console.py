@@ -120,11 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
 
     def do_count(self, arg):
-        """Count the number of instances of a specified class.
-
-        Usage: count <class_name>
-        Example: count User
-        """
+        ''' Count the number of instances of a specified class using <class_name> '''
         class_name = arg.strip()
         if class_name in HBNBCommand.class_names:
             count = 0
@@ -135,7 +131,57 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** Class doesn't exist **")
 
-    
+    def precmd(self, line):
+        ''' custom commands handled '''
+        parts = line.split('.')
+        if len(parts) == 2:
+            if parts[1] == 'all()' or parts[1] == 'count()':
+                parts[0] = parts[0].strip()
+                parts[1] = parts[1].translate(
+                    str.maketrans('', '', '()')).strip()
+                method_name = f"do_{parts[1]}"
+                getattr(self, method_name)(f"{parts[0]}")
+
+            if len(parts) == 2 and '(' in parts[1] and parts[1].endswith(')'):
+                class_name = parts[0].strip()
+                command, args = parts[1].split('(', 1)
+
+                if command == 'update':
+                    method_name = f"do_{command}"
+                    if ',' not in args:
+                        print("** attribute name missing **")
+                        return ""
+                    id, attr = args.split(',', 1)
+                    id = id.strip('"')
+                    attr = attr.strip(')').strip()
+                    attr = attr.replace('"', "'")
+                    attr = ast.literal_eval(attr)
+                    if isinstance(attr, dict):
+                        for key, value in attr.items():
+                            getattr(self, method_name)(
+                                f"{class_name} {id} {key} {repr(value)}")
+                    else:
+                        if isinstance(attr, tuple):
+                            attr = list(attr)
+                            attr_name, attr_value = attr[0], repr(attr[1])
+                        else:
+                            attr_name = attr
+                            attr_value = ""
+                        getattr(self, method_name)(
+                            f"{class_name} {id} {attr_name} {attr_value}")
+
+                elif command in {'show', 'destroy', }:
+                    args = args.strip(')')
+                    args = args.strip('"')
+                    method_name = f"do_{command}"
+                    getattr(self, method_name)(f"{class_name} {args}")
+                else:
+                    return ""
+            return ""
+
+        else:
+            return line
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
