@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
+from models.amenity import Amenity
 import os
 
 
@@ -49,5 +50,7 @@ class FileStorage:
                             _data[key] = State(**value)
                         elif "City" in key:
                             _data[key] = City(**value)
+                        elif "Amenity" in key:
+                            _data[key] = Amenity(**value)
             except FileExistsError:
                 pass
