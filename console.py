@@ -8,6 +8,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from models import storage
 import ast
 
 
@@ -121,7 +122,8 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
 
     def do_count(self, arg):
-        ''' Count the number of instances of a specified class using <class_name> '''
+        ''' Count the number of instances of a specified
+        class using <class_name> '''
         class_name = arg.strip()
         if class_name in HBNBCommand.class_names:
             count = 0
