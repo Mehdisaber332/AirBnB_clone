@@ -1,10 +1,3 @@
 # AirBnB_clone
-# Python package
-# Command interpreter in Python using the cmd module
-# Unit testing 
-# Serialize and deserialize a Class
-# Datetime
-# UUID
-# *Args
-# **kwargs
-# Arguments in a function
+https://imgur.com/xuoucfD.png
+This is the AirBnB Clone project hbnb!
