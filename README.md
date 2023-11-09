@@ -9,3 +9,10 @@ This is the AirBnB Clone project hbnb!
 
 ## The console
 For this project we implemented a backend console using JSON serialization/deserialization that allows you to manage data, you can update, create, destroy and count objects.
+
+## Usage
+1. First of all you need to clone the repository to your machine
+2. go to "console.py" location and run it using this command:
+
+	```bash
+	./console.py
