@@ -8,7 +8,7 @@ This is the AirBnB Clone project hbnb!
 - Elmehdi Saber- [Mehdisaber332](https://github.com/Mehdisaber332)
 
 ## The console
-For this project we implemented a backend console using JSON serialization/deserialization that allows you to manage data, you can update, create, destroy and count objects.
+For this project we implemented a backend console using JSON serialization/deserialization that allows you to manage data. you can update, create, destroy and count objects.
 
 ## Unittest
 For python testing we used the Unittest module, it is a powerful module that supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.
