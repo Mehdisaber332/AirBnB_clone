@@ -37,10 +37,10 @@ class HBNBCommand(cmd.Cmd):
         '''Create a new instance of BaseModel'''
         if not arg:
             print("** class name missing **")
-        elif arg not in storage.classes:
+        elif arg not in models.storage.classes:
             print("** class doesn't exist **")
         else:
-            new_instance = storage.classes[arg]()
+            new_instance = models.storage.classes[arg]()
             new_instance.save()
             print(new_instance.id)
 
@@ -50,13 +50,13 @@ class HBNBCommand(cmd.Cmd):
         obj_list = []
 
         if not arg:
-            for obj_id, obj in storage.all().items():
+            for obj_id, obj in models.storage.all().items():
                 obj_list.append(str(obj))
             print(obj_list)
-        elif args[0] not in storage.classes:
+        elif args[0] not in models.storage.classes:
             print("** class doesn't exist **")
         else:
-            for obj_id, obj in storage.all().items():
+            for obj_id, obj in models.storage.all().items():
                 if obj.__class__.__name__ == args[0]:
                     obj_list.append(str(obj))
             if obj_list:
@@ -69,29 +69,29 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in storage.classes:
+        elif args[0] not in models.storage.classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
         else:
             key = "{}.{}".format(args[0], args[1])
-            if key not in storage.all():
+            if key not in models.storage.all():
                 print("** no instance found **")
             else:
-                print(storage.all()[key])
+                print(models.storage.all()[key])
 
     def do_destroy(self, arg):
         '''Delete an instance based on the class name and id'''
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in storage.classes:
+        elif args[0] not in models.storage.classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
         else:
             key = "{}.{}".format(args[0], args[1])
-            if key not in storage.all():
+            if key not in models.storage.all():
                 print("** no instance found **")
             else:
                 del storage.all()[key]
@@ -102,20 +102,20 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in storage.classes:
+        elif args[0] not in models.storage.classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
         else:
             key = "{}.{}".format(args[0], args[1])
-            if key not in storage.all():
+            if key not in models.storage.all():
                 print("** no instance found **")
             elif len(args) < 3:
                 print("** attribute name missing **")
             elif len(args) < 4:
                 print("** value missing **")
             else:
-                obj = storage.all()[key]
+                obj = models.storage.all()[key]
                 attr_name = args[2]
                 attr_value = args[3]
                 setattr(obj, attr_name, attr_value)
