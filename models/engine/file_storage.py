@@ -16,7 +16,14 @@ class FileStorage:
     """serializes/deserializes instances to a JSON file"""
     __file_path = "str.json"
     __objects = {}
-    classes = {}
+    classes = {"BaseModel": BaseModel,
+               "User": User,
+               "Place": Place,
+               "State": State,
+               "City": City,
+               "Amenity": Amenity,
+               "Review": Review
+               }
 
     def all(self):
         """returns objects"""
