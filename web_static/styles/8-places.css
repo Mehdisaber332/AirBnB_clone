@@ -88,3 +88,8 @@
     background-position: top;
     background-size: 50px;
 }
+.user {
+    margin-top: 20px;
+	align-items: center;
+    display: flex;
+}
