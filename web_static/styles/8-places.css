@@ -35,8 +35,8 @@
 .places-container .price_by_night {
     font-size: 30px;
     color: #FF5A5F;
-    border: 3px solid #FF5A5F;
-    border-radius: 50%;
+    border: solid #FF5A5F 3px;
+    border-radius: 60%;
     min-width: 60px;
     height: 60px;
     display: flex;
